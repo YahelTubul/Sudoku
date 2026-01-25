@@ -38,4 +38,9 @@ public class Validation
         }
         return false;
     }
+
+    public static bool IsValid(int[][] board, int row, int col, int number)
+    {
+        return !AppearInRow(board, row, number) && !AppearInCol(board, col, number) && !AppearInBlock(board, row, col, number);
+    }
 }
