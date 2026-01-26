@@ -35,5 +35,13 @@ public class Validation
             errorMsg = "The value must be between 1 to 9!";
             return false;
         }
+
+        if (value == 0)
+        {
+            return true;
+        }
+
+        bit = 1 << value;
+        return true;
     }
 }
