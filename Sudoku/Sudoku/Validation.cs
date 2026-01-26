@@ -44,4 +44,9 @@ public class Validation
         bit = 1 << value;
         return true;
     }
+
+    private static bool AddValid(int[][] board, int row, int col, out int value, out int bit, out string errorMsg)
+    {
+        
+    }
 }
