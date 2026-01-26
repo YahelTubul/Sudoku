@@ -23,4 +23,17 @@ public class Validation
         }
         return true;
     }
+
+    private static bool ValueValid(int[][] board, int row, int col, out int value, out int bit, out string errorMsg)
+    {
+        errorMsg = "";
+        bit = 0;
+        value = board[row][col];
+
+        if (value < 1 || value > 9)
+        {
+            errorMsg = "The value must be between 1 to 9!";
+            return false;
+        }
+    }
 }
