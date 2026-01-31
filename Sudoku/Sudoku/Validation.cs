@@ -126,7 +126,6 @@ public class Validation
             errorMsg = $"There is a duplicate value in {row+1}";
             return false;
         }
-        
         //check if the digit appear in the col
         if (SetBit(maskCol[col], bit))
         {
