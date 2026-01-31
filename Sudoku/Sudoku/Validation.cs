@@ -57,5 +57,9 @@ public class Validation
     {
         return (mask & bit) != 0;
     }
-    
+
+    private static int GetBlockIndex(int row, int col)
+    {
+        return (row / SizeBoard) * SizeBoard + (col / SizeBoard);
+    }
 }
