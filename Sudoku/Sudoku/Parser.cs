@@ -4,7 +4,7 @@ public class Parser
 {
     public const int SizeBoard = 9;
     public const int NumOfCells = 81;
-
+    
     /// <summary>
     /// This function try to parse the board with call to the helper function that check the string , and build the board
     /// </summary>
