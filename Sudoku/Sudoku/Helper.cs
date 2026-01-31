@@ -25,4 +25,14 @@ public class Helper
     {
         return (row / SizeBlock) * SizeBlock + (col / SizeBlock);
     }
+    /// <summary>
+    /// Convert number to bit series 
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    public static int NumberToBit(int number)
+    {
+        return 1 << number;
+    }
+    
 }
