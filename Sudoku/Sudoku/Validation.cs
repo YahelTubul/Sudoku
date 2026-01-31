@@ -29,7 +29,8 @@ public class Validation
         errorMsg = "";
         bit = 0;
         value = board[row][col];
-
+        
+        //check if the value of digit is between 1 to 9
         if (value < 1 || value > 9)
         {
             errorMsg = "The value must be between 1 to 9!";
@@ -50,7 +51,31 @@ public class Validation
     {
         errorMsg = "";
         
+        //check if the digit appear in the row
+        if (!SetBit(maskRow[row], bit))
+        {
+            errorMsg = $"There is a duplicate value in {row+1}";
+            return false;
+        }
         
+        //check if the digit appear in the col
+        if (!SetBit(maskCol[col], bit))
+        {
+            errorMsg = $"There is a duplicate value in {col+1}";
+            return false;
+        }
+        
+        //check if the digit appear in the block
+        if (!SetBit(maskBlock[block], bit))
+        {
+            errorMsg = $"There is a duplicate value in {block+1}";
+            return false;
+        }
+        // after the checks mark the digit as used
+        maskRow[row] |= bit;
+        maskCol[col] |= bit;
+        maskBlock[block] |= bit;
+        return true;
     }
 
     private static bool SetBit(int mask, int bit)
