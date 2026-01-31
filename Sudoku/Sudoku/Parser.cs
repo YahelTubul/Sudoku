@@ -4,7 +4,12 @@ public class Parser
 {
     public const int SizeBoard = 9;
     public const int NumOfCells = 81;
-    
+
+
+    public static bool Parse(string strBoard, out int[][] board)
+    {
+        
+    }
     /// <summary>
     /// This function check the received input
     /// </summary>
@@ -43,10 +48,27 @@ public class Parser
         }
         return true;
     }
-
-    private static int BuildBoard(string strBoard)
+    /// <summary>
+    /// Build the board as 2d array by using the string received
+    /// </summary>
+    /// <param name="strBoard"></param>
+    /// <returns>board</returns>
+    private static int[][] BuildBoard(string strBoard)
     {
+        int[][] board = new int[SizeBoard][];
         
+        // pass on each row, and create new array in this index
+        for (int row = 0; row < SizeBoard; row++)
+        {
+            board[row] = new int[SizeBoard];
+        }
+        // pass on each cell and sets to it the specific char from the string
+        for (int i = 0; i < NumOfCells; i++)
+        {
+            int value = strBoard[i] - '0';
+            board[i / SizeBoard][i % SizeBoard] = value;
+        }
+        return board;
     }
 }
 
