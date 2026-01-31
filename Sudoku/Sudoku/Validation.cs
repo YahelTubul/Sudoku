@@ -45,8 +45,17 @@ public class Validation
         return true;
     }
 
-    private static bool AddValid(int[][] board, int row, int col, out int value, out int bit, out string errorMsg)
+    private static bool AddValid(int[][] board, int[] maskRow, int[] maskCol, int[] maskBlock, int row, int col,
+        int block, int value, int bit, out string errorMsg)
     {
+        errorMsg = "";
+        
         
     }
+
+    private static bool SetBit(int mask, int bit)
+    {
+        return (mask & bit) != 0;
+    }
+    
 }
