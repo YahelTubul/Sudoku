@@ -5,10 +5,24 @@ public class Parser
     public const int SizeBoard = 9;
     public const int NumOfCells = 81;
 
-
-    public static bool Parse(string strBoard, out int[][] board)
+    /// <summary>
+    /// This function try to parse the board with call to the helper function that check the string , and build the board
+    /// </summary>
+    /// <param name="strBoard"></param>
+    /// <param name="board"></param>
+    /// <param name="errorMsg"></param>
+    /// <returns>true/false, error message</returns>
+    public static bool Parse(string strBoard, out int[][] board, out string errorMsg)
     {
-        
+        board = null;
+        errorMsg = "";
+        // check if the string is valid
+        if (!ValidInput(strBoard, out errorMsg))
+        {
+            return false;
+        }
+        board = BuildBoard(strBoard);
+        return true;
     }
     /// <summary>
     /// This function check the received input
