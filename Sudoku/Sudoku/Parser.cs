@@ -43,4 +43,10 @@ public class Parser
         }
         return true;
     }
+
+    private static int BuildBoard(string strBoard)
+    {
+        
+    }
 }
+
