@@ -2,8 +2,6 @@ namespace Sudoku;
 
 public class Validation
 {   
-    public const int SizeBoard = 9;
-    public const int SizeBlock = 3;
     
     /// <summary>
     /// check if the board is valid after all the checks that happen in the other fucntions
@@ -21,13 +19,13 @@ public class Validation
             return false;
         }
         
-        int[] rowMask = new int[SizeBoard];
-        int[] colMask = new int[SizeBoard];
-        int[] blockMask = new int[SizeBoard];
+        int[] rowMask = new int[Helper.SizeBoard];
+        int[] colMask = new int[Helper.SizeBoard];
+        int[] blockMask = new int[Helper.SizeBoard];
 
-        for (int row = 0; row < SizeBoard; row++)
+        for (int row = 0; row < Helper.SizeBoard; row++)
         {
-            for (int col = 0; col < SizeBoard; col++)
+            for (int col = 0; col < Helper.SizeBoard; col++)
             {
                 // call to function valueValid to check each cell value in the board
                 if (!ValueValid(board, row, col, out int value, out int bit, out errorMsg))
@@ -36,7 +34,7 @@ public class Validation
                 if (value == 0)
                     continue;
                 
-                int block = GetBlockIndex(row, col);
+                int block = Helper.GetBlockIndex(row, col);
                 
                 // call to addValid function to check if there is not duplicate in the board
                 if (!AddValid(rowMask, colMask, blockMask, row, col, block, value, bit, out errorMsg))
@@ -55,15 +53,15 @@ public class Validation
     {
         errorMsg = "";
         // loop on each col in the board to validate that there is 9 cols
-        if (board == null || board.Length != SizeBoard)
+        if (board == null || board.Length != Helper.SizeBoard)
         {
             errorMsg = "Board size need to include 9 rows!";
             return false;
         }
         // loop on each row in the board to validate that there is 9 rows
-        for (int row = 0; row < SizeBoard; row++ )
+        for (int row = 0; row < Helper.SizeBoard; row++ )
         {
-            if (board[row] == null || board[row].Length != SizeBoard)
+            if (board[row] == null || board[row].Length != Helper.SizeBoard)
             {
                 errorMsg = "Board size need to include 9 columns!";
                 return false;
@@ -121,20 +119,20 @@ public class Validation
         errorMsg = "";
         
         //check if the digit appear in the row
-        if (SetBit(maskRow[row], bit))
+        if (Helper.SetBit(maskRow[row], bit))
         {
             errorMsg = $"There is a duplicate value in {row+1}";
             return false;
         }
         //check if the digit appear in the col
-        if (SetBit(maskCol[col], bit))
+        if (Helper.SetBit(maskCol[col], bit))
         {
             errorMsg = $"There is a duplicate value in {col+1}";
             return false;
         }
         
         //check if the digit appear in the block
-        if (SetBit(maskBlock[block], bit))
+        if (Helper.SetBit(maskBlock[block], bit))
         {
             errorMsg = $"There is a duplicate value in {block+1}";
             return false;
@@ -144,25 +142,5 @@ public class Validation
         maskCol[col] |= bit;
         maskBlock[block] |= bit;
         return true;
-    }
-    /// <summary>
-    /// check if the bit is on using binary operator
-    /// </summary>
-    /// <param name="mask"></param>
-    /// <param name="bit"></param>
-    /// <returns>true/false</returns>
-    private static bool SetBit(int mask, int bit)
-    {
-        return (mask & bit) != 0;
-    }
-    /// <summary>
-    /// calculate the index of the present block
-    /// </summary>
-    /// <param name="row"></param>
-    /// <param name="col"></param>
-    /// <returns>index of the present block</returns>
-    private static int GetBlockIndex(int row, int col)
-    {
-        return (row / SizeBlock) * SizeBlock + (col / SizeBlock);
     }
 }
