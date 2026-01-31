@@ -5,6 +5,12 @@ public class Validation
     public const int SizeBoard = 9;
     public const int SizeBlock = 3;
 
+
+    public static bool Validate(int[][] board, out string errorMsg)
+    {
+        
+    }
+
     private static bool BoardValid(int[][] board, out string errorMsg)
     {
         errorMsg = "";
