@@ -49,4 +49,27 @@ public class Solver
         int useMask = maskRow[row] | maskCol[col] | maskBlock[indexBlock];
         return Helper.CompleteMask & ~useMask;
     }
+
+    private bool FindCell(int[][] board, out int FindRow, out int FindCol,  out int mask)
+    {
+        FindRow = -1;
+        FindCol = -1;
+        mask = 0;
+        int count = 10;
+        //these loops pass on each cell in the board
+        for (int row = 0; row < Helper.SizeBoard; row++)
+        {
+            for (int col = 0; col < Helper.SizeBoard; col++)
+            {
+                //if there is a value in cell continue to the next iteration
+                if (board[row][col] != 0)
+                {
+                    continue; 
+                }
+                int optionalMask = OptionalMask(row, col);
+            } 
+        }
+        
+    }
 }
+
