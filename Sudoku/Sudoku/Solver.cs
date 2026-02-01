@@ -37,8 +37,8 @@ public class Solver
         }
     }
 
-    private bool FindCell(int[][] board, out int row, out int col, out int mask)
+    private int OptionalMask(int row, int col)
     {
-        return true;
+        
     }
 }
