@@ -36,10 +36,17 @@ public class Solver
             }
         }
     }
-
+    /// <summary>
+    /// This function return bit mask of number that can to place
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <returns></returns>
     private int OptionalMask(int row, int col)
     {
         int indexBlock = Helper.GetBlockIndex(row, col);
-        
+        // create mask of numbers that you cant to place in the specific cell
+        int useMask = maskRow[row] | maskCol[col] | maskBlock[indexBlock];
+        return Helper.CompleteMask & ~useMask;
     }
 }
