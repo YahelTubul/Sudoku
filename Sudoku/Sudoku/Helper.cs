@@ -4,6 +4,7 @@ public class Helper
 {
     public const int SizeBoard = 9;
     public const int SizeBlock = 3;
+    public const int CompleteMask = 0b1111111110;
     
     /// <summary>
     /// check if the bit is on using binary operator

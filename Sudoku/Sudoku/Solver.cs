@@ -39,6 +39,7 @@ public class Solver
 
     private int OptionalMask(int row, int col)
     {
+        int indexBlock = Helper.GetBlockIndex(row, col);
         
     }
 }
