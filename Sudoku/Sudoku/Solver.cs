@@ -90,7 +90,15 @@ public class Solver
         }
         return FindRow != -1;
     }
-
+    
+    /// <summary>
+    /// allocate value in the cell
+    /// </summary>
+    /// <param name="board"></param>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <param name="number"></param>
+    /// <param name="bit"></param>
     private void allocateValue(int[][] board, int row, int col, int number, int bit)
     {
         board[row][col] = number;
@@ -98,6 +106,11 @@ public class Solver
         maskBlock[index] |= bit;
         maskRow[row] |= bit;
         maskCol[col] |= bit;
+    }
+
+    private void removeValue(int[][] board, int row, int col, int number, int bit)
+    {
+        
     }
 }
 
