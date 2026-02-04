@@ -108,9 +108,13 @@ public class Solver
         maskCol[col] |= bit;
     }
 
-    private void removeValue(int[][] board, int row, int col, int number, int bit)
+    private void removeValue(int[][] board, int row, int col, int bit)
     {
-        
+        board[row][col] = 0;
+        int index = Helper.GetBlockIndex(row, col);
+        maskBlock[index] &= ~bit;
+        maskRow[row] &= ~bit;
+        maskCol[col] &= ~bit;
     }
 }
 
