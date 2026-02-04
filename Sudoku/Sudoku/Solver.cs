@@ -49,7 +49,14 @@ public class Solver
         int useMask = maskRow[row] | maskCol[col] | maskBlock[indexBlock];
         return Helper.CompleteMask & ~useMask;
     }
-
+    /// <summary>
+    /// find the empty cell with the minimal options to place 
+    /// </summary>
+    /// <param name="board"></param>
+    /// <param name="FindRow"></param>
+    /// <param name="FindCol"></param>
+    /// <param name="mask"></param>
+    /// <returns></returns>
     private bool FindCell(int[][] board, out int FindRow, out int FindCol,  out int mask)
     {
         FindRow = -1;
@@ -67,10 +74,21 @@ public class Solver
                     continue; 
                 }
                 int optionalMask = OptionalMask(row, col);
-                int count = 
+                int countOnBits = Helper.CountOnBits(mask);
+                //check if the amount of the on bits is smaller than the max on bits
+                if (countOnBits < count)
+                {
+                    count =  countOnBits;
+                    FindRow = row;
+                    FindCol = col;
+                    mask = optionalMask;
+                }
+                
+                if (count == 1)
+                    return true;
             } 
         }
-        
+        return FindRow != -1;
     }
 }
 
