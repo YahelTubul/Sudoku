@@ -93,7 +93,11 @@ public class Solver
 
     private void allocateValue(int[][] board, int row, int col, int number, int bit)
     {
-        
+        board[row][col] = number;
+        int index = Helper.GetBlockIndex(row, col);
+        maskBlock[index] |= bit;
+        maskRow[row] |= bit;
+        maskCol[col] |= bit;
     }
 }
 
