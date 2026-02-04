@@ -67,6 +67,7 @@ public class Solver
                     continue; 
                 }
                 int optionalMask = OptionalMask(row, col);
+                int count = 
             } 
         }
         

@@ -36,4 +36,9 @@ public class Helper
         return 1 << number;
     }
     
+    public static int CountOnBits(int mask)
+    {
+        
+    }
+    
 }
