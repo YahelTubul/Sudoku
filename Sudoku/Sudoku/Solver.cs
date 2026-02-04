@@ -90,5 +90,11 @@ public class Solver
         }
         return FindRow != -1;
     }
+
+    private void allocateValue(int[][] board, int row, int col, int number, int bit)
+    {
+        
+    }
 }
+
 
