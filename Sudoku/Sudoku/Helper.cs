@@ -35,10 +35,20 @@ public class Helper
     {
         return 1 << number;
     }
-    
+    /// <summary>
+    /// Count how much on bits there are in the mask
+    /// </summary>
+    /// <param name="mask"></param>
+    /// <returns></returns>
     public static int CountOnBits(int mask)
     {
-        
+        int count = 0;
+        while (mask != 0)
+        {
+            mask &= (mask - 1);
+            count++;
+        }
+        return count;
     }
     
 }
