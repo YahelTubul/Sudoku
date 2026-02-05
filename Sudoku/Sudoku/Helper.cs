@@ -50,5 +50,11 @@ public class Helper
         }
         return count;
     }
+
+    public static int GetFirstSetBit(int mask)
+    {
+        
+            
+    }
     
 }
