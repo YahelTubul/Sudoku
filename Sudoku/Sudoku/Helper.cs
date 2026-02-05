@@ -112,10 +112,14 @@ public class Helper
 
         return solvedStr.ToString();
     }
-    
+    /// <summary>
+    /// print error message 
+    /// </summary>
+    /// <param name="subject"></param>
+    /// <param name="message"></param>
     private static void PrintError(string subject, string message)
     {
-        
+        Console.WriteLine($"{subject} error: {message}\n");
     }
 
 }
