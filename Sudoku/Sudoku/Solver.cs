@@ -157,10 +157,23 @@ public class Solver
         }
         return false;
     }
-
+    /// <summary>
+    /// unit all the private function, that can be call in the main
+    /// </summary>
+    /// <param name="board"></param>
+    /// <param name="errorMsg"></param>
+    /// <returns></returns>
     public bool Solve(int[][] board, out string errorMsg)
     {
-        
+        errorMsg = "";
+        CreateMask(board);
+        bool solve = Backtracking(board);
+        if (!solve)
+        {
+            errorMsg = "The board has no solution";
+            return false;
+        }
+        return solve;
     }
 }
 
