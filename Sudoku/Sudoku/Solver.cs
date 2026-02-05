@@ -136,8 +136,22 @@ public class Solver
         //there are no options to allocate in the cell
         if (optionalMask == 0)
             return false;
-        
-        
+        while (optionalMask != 0)
+        {
+            //get the bit that present the first option to check 
+            int setBit = Helper.GetFirstSetBit(optionalMask);
+            int number = Helper.NumberToBit(setBit);
+            //try to do allocate to the option that taken from the mask
+            AllocateValue(board, row, col, number, setBit);
+            //check if find true option to the cell and stop the recursion
+            if(Backtracking(board))
+                return true;
+            //remove the incorrect value that try to allocate in the cell
+            RemoveValue(board, row, col, setBit);
+            //remove the incorrect option from the mask
+            optionalMask ^= setBit;
+        }
+        return false;
     }
 }
 
