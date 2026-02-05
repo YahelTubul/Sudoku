@@ -66,6 +66,21 @@ public class Helper
     {
         return mask & -mask;
     }
+    /// <summary>
+    /// convert bit to number
+    /// </summary>
+    /// <param name="bit"></param>
+    /// <returns></returns>
+    public static int BitToNumber(int bit)
+    {
+        int number = 0;
+        while (bit > 1)
+        {
+            bit >>= 1;
+            number++;
+        }
+        return number;
+    }
 
     /// <summary>
     /// print the solution of the board as pretty table

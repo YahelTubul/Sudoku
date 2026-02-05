@@ -74,7 +74,7 @@ public class Solver
                     continue; 
                 }
                 int optionalMask = OptionalMask(row, col);
-                int countOnBits = Helper.CountOnBits(mask);
+                int countOnBits = Helper.CountOnBits(optionalMask);
                 //check if the amount of the on bits is smaller than the max on bits
                 if (countOnBits < count)
                 {
@@ -144,7 +144,7 @@ public class Solver
         {
             //get the bit that present the first option to check 
             int setBit = Helper.GetFirstSetBit(optionalMask);
-            int number = Helper.NumberToBit(setBit);
+            int number = Helper.BitToNumber(setBit);
             //try to do allocate to the option that taken from the mask
             AllocateValue(board, row, col, number, setBit);
             //check if find true option to the cell and stop the recursion
