@@ -157,6 +157,11 @@ public class Solver
         }
         return false;
     }
+
+    public bool Solve(int[][] board, out string errorMsg)
+    {
+        
+    }
 }
 
 
