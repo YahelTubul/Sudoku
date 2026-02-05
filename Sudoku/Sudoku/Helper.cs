@@ -60,7 +60,10 @@ public class Helper
     {
         return mask & -mask;
     }
-
+    /// <summary>
+    /// print the solution of the board as pretty table
+    /// </summary>
+    /// <param name="board"></param>
     public static void PrintBoard(int[][] board)
     {
         for (int row = 0; row < SizeBoard; row++)
@@ -80,5 +83,10 @@ public class Helper
             }
             Console.WriteLine();
         }
+    }
+
+    public static void PrintBoardString(int[][] board)
+    {
+        
     }
 }
