@@ -60,5 +60,9 @@ public class Helper
     {
         return mask & -mask;
     }
-    
+
+    public static void PrintBoard(int[][] board)
+    {
+        
+    }
 }
