@@ -7,7 +7,7 @@ public class Helper
     public const int SizeBoard = 9;
     public const int SizeBlock = 3;
     public const int CompleteMask = 0b1111111110;
-    
+
     /// <summary>
     /// check if the bit is on using binary operator
     /// </summary>
@@ -18,6 +18,7 @@ public class Helper
     {
         return (mask & bit) != 0;
     }
+
     /// <summary>
     /// calculate the index of the present block
     /// </summary>
@@ -28,6 +29,7 @@ public class Helper
     {
         return (row / SizeBlock) * SizeBlock + (col / SizeBlock);
     }
+
     /// <summary>
     /// Convert number to bit series 
     /// </summary>
@@ -37,6 +39,7 @@ public class Helper
     {
         return 1 << number;
     }
+
     /// <summary>
     /// Count how much on bits there are in the mask
     /// </summary>
@@ -50,9 +53,10 @@ public class Helper
             mask &= (mask - 1);
             count++;
         }
+
         return count;
     }
-    
+
     /// <summary>
     /// return the first set bit, this is the first option for check in the backtracking 
     /// </summary>
@@ -62,6 +66,7 @@ public class Helper
     {
         return mask & -mask;
     }
+
     /// <summary>
     /// print the solution of the board as pretty table
     /// </summary>
@@ -81,12 +86,19 @@ public class Helper
                 {
                     Console.Write("| ");
                 }
+
                 Console.Write(board[row][col] + " ");
             }
+
             Console.WriteLine();
         }
     }
 
+    /// <summary>
+    /// return the string the present the solved sudoku
+    /// </summary>
+    /// <param name="board"></param>
+    /// <returns></returns>
     public static string PrintBoardString(int[][] board)
     {
         StringBuilder solvedStr = new StringBuilder(81);
@@ -97,6 +109,13 @@ public class Helper
                 solvedStr.Append((char)('0' + board[row][col]));
             }
         }
+
         return solvedStr.ToString();
     }
+    
+    private static void PrintError(string subject, string message)
+    {
+        
+    }
+
 }
