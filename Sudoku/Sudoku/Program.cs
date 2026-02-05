@@ -5,5 +5,9 @@ public class Program
     {
         
     }
-    
+
+    private static void SolveBoard(string board)
+    {
+        
+    }
 }
