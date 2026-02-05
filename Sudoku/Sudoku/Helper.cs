@@ -63,6 +63,22 @@ public class Helper
 
     public static void PrintBoard(int[][] board)
     {
-        
+        for (int row = 0; row < SizeBoard; row++)
+        {
+            if (row == SizeBlock || row == 6)
+            {
+                Console.WriteLine("---------------------");
+            }
+
+            for (int col = 0; col < SizeBoard; col++)
+            {
+                if (col == SizeBlock || col == 6)
+                {
+                    Console.Write("| ");
+                }
+                Console.Write(board[row][col] + " ");
+            }
+            Console.WriteLine();
+        }
     }
 }
