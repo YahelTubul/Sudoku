@@ -126,7 +126,11 @@ public class Solver
         maskRow[row] &= ~bit;
         maskCol[col] &= ~bit;
     }
-
+    /// <summary>
+    /// solves the board using recursive backtracking algorithm
+    /// </summary>
+    /// <param name="board"></param>
+    /// <returns></returns>
     private bool Backtracking(int[][] board)
     {
         // find the cell with the minimum options to allocate in
