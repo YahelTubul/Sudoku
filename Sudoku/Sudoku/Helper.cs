@@ -117,7 +117,7 @@ public class Helper
     /// </summary>
     /// <param name="subject"></param>
     /// <param name="message"></param>
-    private static void PrintError(string subject, string message)
+    public static void PrintError(string subject, string message)
     {
         Console.WriteLine($"{subject} error: {message}\n");
     }
