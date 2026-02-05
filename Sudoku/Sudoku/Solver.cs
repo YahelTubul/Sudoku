@@ -129,6 +129,13 @@ public class Solver
 
     private bool Backtracking(int[][] board)
     {
+        // find the cell with the minimum options to allocate in
+        if (!FindCell(board, out int row, out int col, out int optionalMask))
+            // if dont find, the sudokou is solved
+            return true;
+        //there are no options to allocate in the cell
+        if (optionalMask == 0)
+            return false;
         
     }
 }
