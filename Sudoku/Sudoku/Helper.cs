@@ -50,11 +50,15 @@ public class Helper
         }
         return count;
     }
-
+    
+    /// <summary>
+    /// return the first set bit, this is the first option for check in the backtracking 
+    /// </summary>
+    /// <param name="mask"></param>
+    /// <returns></returns>
     public static int GetFirstSetBit(int mask)
     {
-        
-            
+        return mask & -mask;
     }
     
 }
