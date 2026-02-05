@@ -99,22 +99,37 @@ public class Solver
     /// <param name="col"></param>
     /// <param name="number"></param>
     /// <param name="bit"></param>
-    private void allocateValue(int[][] board, int row, int col, int number, int bit)
+    private void AllocateValue(int[][] board, int row, int col, int number, int bit)
     {
+        //allocate the new number in cell
         board[row][col] = number;
         int index = Helper.GetBlockIndex(row, col);
+        //turn on the bits in each mask 
         maskBlock[index] |= bit;
         maskRow[row] |= bit;
         maskCol[col] |= bit;
     }
-
-    private void removeValue(int[][] board, int row, int col, int bit)
+    /// <summary>
+    /// remove the value from cell
+    /// </summary>
+    /// <param name="board"></param>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <param name="bit"></param>
+    private void RemoveValue(int[][] board, int row, int col, int bit)
     {
+        //change the value in the cell to 0
         board[row][col] = 0;
         int index = Helper.GetBlockIndex(row, col);
+        //turn off the bits in each mask 
         maskBlock[index] &= ~bit;
         maskRow[row] &= ~bit;
         maskCol[col] &= ~bit;
+    }
+
+    private bool Backtracking(int[][] board)
+    {
+        
     }
 }
 
