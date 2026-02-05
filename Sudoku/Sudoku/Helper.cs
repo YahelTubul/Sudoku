@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Sudoku;
 
 public class Helper
@@ -85,8 +87,16 @@ public class Helper
         }
     }
 
-    public static void PrintBoardString(int[][] board)
+    public static string PrintBoardString(int[][] board)
     {
-        
+        StringBuilder solvedStr = new StringBuilder(81);
+        for (int row = 0; row < SizeBoard; row++)
+        {
+            for (int col = 0; col < SizeBoard; col++)
+            {
+                solvedStr.Append((char)('0' + board[row][col]));
+            }
+        }
+        return solvedStr.ToString();
     }
 }
