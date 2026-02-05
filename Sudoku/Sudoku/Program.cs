@@ -1,14 +1,35 @@
 namespace Sudoku;
 public class Program
 {
+    /// <summary>
+    /// manage the conversation with the user and print the solves sudoku
+    /// </summary>
+    /// <param name="args"></param>
     public static void Main(string[] args)
     {
+        //loop until the user want to quit 
         while (true)
         {
-            
+            Console.WriteLine("Enter Sudoku string:");
+            Console.WriteLine("enter 'exit' to quit");
+            string strBoard = Console.ReadLine();
+            if (strBoard == null)
+            {
+                Console.WriteLine();
+                continue;
+            }
+            //remove spaces from the string 
+            strBoard = strBoard.Trim();
+            //check if the user don't want to quit
+            if (strBoard.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                return;
+            SolveBoard(strBoard);
         }
     }
-
+    /// <summary>
+    /// solve single board and print the solution
+    /// </summary>
+    /// <param name="strBoard"></param>
     private static void SolveBoard(string strBoard)
     {
         // try to parse the board
