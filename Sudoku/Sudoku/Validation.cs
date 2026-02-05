@@ -2,7 +2,6 @@ namespace Sudoku;
 
 public class Validation
 {   
-    
     /// <summary>
     /// check if the board is valid after all the checks that happen in the other fucntions
     /// </summary>
