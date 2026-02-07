@@ -74,5 +74,23 @@ public class ParserTests
         Assert.Null(board);
         Assert.Contains("Invalid character", errorMsg);
     }
+
+    [Fact]
+    //This test check the size of the board
+    public void Parse_BoardSize()
+    {
+        //create parser object
+        var parser = new Parser();
+        //create string that present the board 
+        string strBoard = new string('0', 81);
+        //call to the parse function from the class
+        bool result = parser.Parse(strBoard, out int[][] board, out _);
+        Assert.Equal(9, board.Length);
+        //pass on each row in the board and check the length
+        foreach (var row in board)
+        {
+            Assert.Equal(9, row.Length);
+        }
+    }
     
 }
