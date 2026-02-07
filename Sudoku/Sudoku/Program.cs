@@ -1,6 +1,31 @@
 namespace Sudoku;
 public class Program
 {
+
+    private readonly IValidation validation;
+    private readonly IParser parser;
+    private readonly ISolver solver;
+    
+    /// <summary>
+    /// constructor function
+    /// </summary>
+    /// <param name="validation"></param>
+    /// <param name="parser"></param>
+    /// <param name="solver"></param>
+    public Program(IValidation validation, IParser parser, ISolver solver)
+    {
+        this.validation = validation;
+        this.parser = parser;
+        this.solver = solver;
+    }
+    //contructor default without parameters
+    public Program()
+    {
+        validation = new Validation();
+        parser = new Parser();
+        solver = new Solver();
+    }
+    
     /// <summary>
     /// manage the conversation with the user and print the solves sudoku
     /// </summary>
