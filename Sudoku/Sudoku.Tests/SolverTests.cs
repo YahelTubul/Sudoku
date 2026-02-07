@@ -9,7 +9,7 @@ public class SolverTests
         return board;
     }
 
-    private bool isSolved(int[][] board)
+    private bool IsSolved(int[][] board)
     {
         for (int row = 0; row < 9; row++)
         {
@@ -24,7 +24,7 @@ public class SolverTests
     
 
     [Fact]
-    public void Solve_EasySudoku()
+    public void Solve_EasySudoku_Pass()
     {
         //create solver object
         var solver = new Solver();
@@ -34,10 +34,10 @@ public class SolverTests
         bool result = solver.Solve(board, out string errorMsg);
         Assert.True(result);
         Assert.Empty(errorMsg);
-        Assert.True(isSolved(board));
+        Assert.True(IsSolved(board));
     }
     [Fact]
-    public void Solve_HardSudoku()
+    public void Solve_HardSudoku_Pass()
     {
         //create solver object
         var solver = new Solver();
@@ -47,11 +47,11 @@ public class SolverTests
         bool result = solver.Solve(board, out string errorMsg);
         Assert.True(result);
         Assert.Empty(errorMsg);
-        Assert.True(isSolved(board));
+        Assert.True(IsSolved(board));
     }
     
     [Fact]
-    public void Solve_SolvedSudoku()
+    public void Solve_SolvedSudoku_Pass()
     {
         //create solver object
         var solver = new Solver();
@@ -64,8 +64,19 @@ public class SolverTests
     }
 
     [Fact]
-    public void Solve_Unsolveable()
+    public void Solve_Unsolvable_Fails()
     {
-        
+        var solver = new Solver();
+        int[][] board = new int[9][];
+        for (int i = 0; i < 9; i++)
+        {
+            board[i] = new int[9];
+        }
+        //duplicate values cannot be solved
+        board[0][0] = 5;
+        board[0][1] = 5; 
+        bool result = solver.Solve(board, out string errorMsg);
+        Assert.False(result);
+        Assert.Contains("no solution", errorMsg.ToLower());
     }
 }

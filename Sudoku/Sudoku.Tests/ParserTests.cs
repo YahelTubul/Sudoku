@@ -6,7 +6,7 @@ public class ParserTests
 {
     [Fact]
     //This teest try to do parsing on valid input 
-    public void Parse_ValidInput()
+    public void Parse_ValidInput_Pass()
     {
         //create parser object 
         var parser = new Parser();
@@ -21,7 +21,7 @@ public class ParserTests
     
     [Fact]
     // This test try to do parsing on empty board 
-    public void Parse_EmptyBoard()
+    public void Parse_EmptyBoard_Pass()
     {
         // create parser object
         var parser = new Parser();
@@ -36,7 +36,7 @@ public class ParserTests
 
     [Fact]
     //This test try do parsing on null that present empty board
-    public void Parse_Null()
+    public void Parse_Null_Fails()
     {
         // create parser object
         var parser = new Parser();
@@ -49,7 +49,7 @@ public class ParserTests
     
     [Fact]
     // This test try to do parsing on short string 
-    public void Parse_ShortBoard()
+    public void Parse_ShortBoard_Fails()
     {
         // create parser object
         var parser = new Parser();
@@ -62,7 +62,7 @@ public class ParserTests
     }
 
     [Fact]
-    public void Parse_InvalidInput()
+    public void Parse_InvalidInput_Fails()
     {
         //create parser object
         var parser = new Parser();

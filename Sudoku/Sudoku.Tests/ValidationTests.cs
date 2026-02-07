@@ -4,7 +4,7 @@ public class ValidationTests
 {
     [Fact]
     //This test validate empty board 
-    public void Validate_EmptyBoard()
+    public void Validate_EmptyBoard_Pass()
     {
         //create validation object
         var validate = new Validation();
@@ -18,7 +18,7 @@ public class ValidationTests
 
     [Fact]
     //This test validate duplicate values in row
-    public void Validate_DupInRow()
+    public void Validate_DupInRow_Fails()
     {
         //create validation object
         var validate = new Validation();
@@ -35,7 +35,7 @@ public class ValidationTests
 
     [Fact]
     //This test validate duplicate values in cols
-    public void Validate_DupInCol()
+    public void Validate_DupInCol_Fails()
     {
         //create validation object
         var validate = new Validation();
@@ -52,7 +52,7 @@ public class ValidationTests
 
     [Fact]
     //This test validate duplicate values in block
-    public void Validate_DupInBlock()
+    public void Validate_DupInBlock_Fails()
     {
         //create validation object
         var validate = new Validation();
@@ -68,7 +68,7 @@ public class ValidationTests
     }
 
     [Fact]
-    public void Validate_InvalidValue()
+    public void Validate_InvalidValue_Fails()
     {
         //create validation object
         var validate = new Validation();
@@ -82,7 +82,7 @@ public class ValidationTests
     }
 
     [Fact]
-    public void Validate_WrongSizeBoard()
+    public void Validate_WrongSizeBoard_Fails()
     {
         //create validation object
         var validate = new Validation();
