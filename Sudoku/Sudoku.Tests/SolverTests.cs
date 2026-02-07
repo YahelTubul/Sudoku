@@ -49,4 +49,10 @@ public class SolverTests
         Assert.Empty(errorMsg);
         Assert.True(isSolved(board));
     }
+    
+    [Fact]
+    public void Solve_SolvedSudoku()
+    {
+        var solver = new Solver();
+    }
 }
