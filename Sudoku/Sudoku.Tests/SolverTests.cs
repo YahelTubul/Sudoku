@@ -53,6 +53,19 @@ public class SolverTests
     [Fact]
     public void Solve_SolvedSudoku()
     {
+        //create solver object
         var solver = new Solver();
+        string solved = "534678912672195348198342567859761423426853791713924856961537284287419635345286179";
+        //call to the parse function
+        int[][] board = ParseBoard(solved);
+        bool result = solver.Solve(board, out string errorMsg);
+        Assert.True(result);
+        Assert.Empty(errorMsg);
+    }
+
+    [Fact]
+    public void Solve_Unsolveable()
+    {
+        
     }
 }
