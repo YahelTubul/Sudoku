@@ -24,7 +24,7 @@ public class ValidationTests
         var validate = new Validation();
         //create empty board
         int[][] board = Helper.CreateEmptyBoard();
-        //allocate duplicate values in diffrent rows
+        //allocate duplicate values in same rows
         board[0][0] = 5;
         board[0][1] = 5;
         //call to the validate function from the class
@@ -41,7 +41,7 @@ public class ValidationTests
         var validate = new Validation();
         //create empty board
         int[][] board = Helper.CreateEmptyBoard();
-        //allocate duplicate values in diffrent cols
+        //allocate duplicate values in same cols
         board[0][0] = 5;
         board[1][0] = 5;
         //call to the validate function from the class
@@ -84,6 +84,12 @@ public class ValidationTests
     [Fact]
     public void Validate_WrongSizeBoard()
     {
-        
+        //create validation object
+        var validate = new Validation();
+        //create board with wrong size 
+        int[][] board = new int[8][];
+        bool result = validate.Validate(board, out string errorMsg);
+        Assert.False(result);
+        Assert.Contains("rows", errorMsg.ToLower());
     }
 }
