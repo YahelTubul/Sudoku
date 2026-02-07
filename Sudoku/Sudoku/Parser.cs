@@ -1,9 +1,7 @@
 namespace Sudoku;
 
-public class Parser
+public class Parser : IParser
 {
-    public const int SizeBoard = 9;
-    public const int NumOfCells = 81;
     
     /// <summary>
     /// This function try to parse the board with call to the helper function that check the string , and build the board
@@ -12,7 +10,7 @@ public class Parser
     /// <param name="board"></param>
     /// <param name="errorMsg"></param>
     /// <returns>true/false, error message</returns>
-    public static bool Parse(string strBoard, out int[][] board, out string errorMsg)
+    public bool Parse(string strBoard, out int[][] board, out string errorMsg)
     {
         board = null;
         errorMsg = "";
@@ -44,14 +42,14 @@ public class Parser
         strBoard = strBoard.Trim();
         
         // check if the length of the string is equal to the number of cells
-        if (strBoard.Length != NumOfCells)
+        if (strBoard.Length != Helper.NumOfCells)
         {
-            errorMsg = $"The string must contain {NumOfCells} numbers,you need to add {NumOfCells - strBoard.Length} numbers!";
+            errorMsg = $"The string must contain {Helper.NumOfCells} numbers,you need to add {Helper.NumOfCells - strBoard.Length} numbers!";
             return false;
         }
         
         //pass on each char in the array and check if its digit between '0' to '9'
-        for (int i = 0; i < NumOfCells; i++)
+        for (int i = 0; i < Helper.NumOfCells; i++)
         {
             ch = strBoard[i];
             if (ch < '0' || ch > '9')
@@ -69,18 +67,18 @@ public class Parser
     /// <returns>board</returns>
     private static int[][] BuildBoard(string strBoard)
     {
-        int[][] board = new int[SizeBoard][];
+        int[][] board = new int[Helper.SizeBoard][];
         
         // pass on each row, and create new array in this index
-        for (int row = 0; row < SizeBoard; row++)
+        for (int row = 0; row < Helper.SizeBoard; row++)
         {
-            board[row] = new int[SizeBoard];
+            board[row] = new int[Helper.SizeBoard];
         }
         // pass on each cell and sets to it the specific char from the string
-        for (int i = 0; i < NumOfCells; i++)
+        for (int i = 0; i < Helper.NumOfCells; i++)
         {
             int value = strBoard[i] - '0';
-            board[i / SizeBoard][i % SizeBoard] = value;
+            board[i / Helper.SizeBoard][i % Helper.SizeBoard] = value;
         }
         return board;
     }

@@ -1,6 +1,6 @@
 namespace Sudoku;
 
-public class Validation
+public class Validation : IValidation
 {   
     /// <summary>
     /// check if the board is valid after all the checks that happen in the other fucntions
@@ -8,7 +8,7 @@ public class Validation
     /// <param name="board"></param>
     /// <param name="errorMsg"></param>
     /// <returns>true/false</returns>
-    public static bool Validate(int[][] board, out string errorMsg)
+    public bool Validate(int[][] board, out string errorMsg)
     {
         errorMsg = "";
         
@@ -84,7 +84,7 @@ public class Validation
         bit = 0;
         value = board[row][col];
         
-        //check if the value of digit is between 1 to 9
+        //check if the value of digit is between 1 and 9
         if (value < 0 || value > 9)
         {
             errorMsg = "The value must be between 1 to 9!";
@@ -100,7 +100,7 @@ public class Validation
         return true;
     }
     /// <summary>
-    /// check if there is not duplicate of the digit in row,col and block in the board, if not mark the digit as used
+    /// check if there is no duplicate of the digit in row,col and block in the board, if not mark the digit as used
     /// </summary>
     /// <param name="maskRow"></param>
     /// <param name="maskCol"></param>

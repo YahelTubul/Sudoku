@@ -1,6 +1,6 @@
 namespace Sudoku;
 
-public class Solver
+public class Solver : ISolver
 {
     private int[] maskRow = new int[Helper.SizeBoard];
     private int[] maskCol = new int[Helper.SizeBoard];
@@ -158,7 +158,7 @@ public class Solver
         return false;
     }
     /// <summary>
-    /// unit all the private function, that can be call in the main
+    /// implement the ISolver interface function
     /// </summary>
     /// <param name="board"></param>
     /// <param name="errorMsg"></param>
