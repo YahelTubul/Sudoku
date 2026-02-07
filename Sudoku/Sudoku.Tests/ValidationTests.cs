@@ -34,6 +34,7 @@ public class ValidationTests
     }
 
     [Fact]
+    //This test validate duplicate values in cols
     public void Validate_DupInCol()
     {
         //create validation object
@@ -50,8 +51,25 @@ public class ValidationTests
     }
 
     [Fact]
+    //This test validate duplicate values in block
     public void Validate_DupInBlock()
     {
+        //create validation object
         var validate = new Validation();
+        //create empty board
+        int[][] board = Helper.CreateEmptyBoard();
+        //allocate duplicate values in block
+        board[0][0] = 5;
+        board[2][2] = 5;
+        //call to the validate function from the class
+        bool result = validate.Validate(board, out string errorMsg);
+        Assert.False(result);
+        Assert.Contains("duplicate", errorMsg.ToLower());
+    }
+
+    [Fact]
+    public void Validate_InvalidValue()
+    {
+        
     }
 }
