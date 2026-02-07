@@ -20,8 +20,19 @@ public class ParserTests
     }
     
     [Fact]
+    // This test try to do parsing on empty board 
     public void Parse_EmptyBoard()
     {
+        // create parser object
         var parser = new Parser();
+        //create empty string that present the board 
+        string strBoard = new string('0', 81);
+        //call to the parse function from the class
+        bool result = parser.Parse(strBoard, out int[][] board, out string errorMsg);
+        Assert.True(result);
+        Assert.NotNull(board);
+        Assert.Equal(0, board[0][0]);
+
+
     }
 }
