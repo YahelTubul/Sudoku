@@ -36,6 +36,22 @@ public class ValidationTests
     [Fact]
     public void Validate_DupInCol()
     {
-        
+        //create validation object
+        var validate = new Validation();
+        //create empty board
+        int[][] board = Helper.CreateEmptyBoard();
+        //allocate duplicate values in diffrent cols
+        board[0][0] = 5;
+        board[1][0] = 5;
+        //call to the validate function from the class
+        bool result = validate.Validate(board, out string errorMsg);
+        Assert.False(result);
+        Assert.Contains("duplicate", errorMsg.ToLower());
+    }
+
+    [Fact]
+    public void Validate_DupInBlock()
+    {
+        var validate = new Validation();
     }
 }
