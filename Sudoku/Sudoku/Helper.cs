@@ -137,5 +137,15 @@ public class Helper
     {
         Console.WriteLine($"{subject} error: {message}\n");
     }
+    
+    public int[][] CreateEmptyBoard()
+    {
+        int[][] board = new int[9][];
+        for (int i = 0; i < 9; i++)
+        {
+            board[i] = new int[9];
+        }
+        return board;
+    }
 
 }
