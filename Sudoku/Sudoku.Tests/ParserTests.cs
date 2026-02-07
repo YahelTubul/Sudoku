@@ -64,7 +64,15 @@ public class ParserTests
     [Fact]
     public void Parse_InvalidInput()
     {
+        //create parser object
         var parser = new Parser();
+        //create string that include invalid char in the string board 
+        string strBoard = "ABC" + new string('0', 78);
+        //call to the parse function from the class
+        bool result = parser.Parse(strBoard, out int[][] board, out string errorMsg);
+        Assert.False(result);
+        Assert.Null(board);
+        Assert.Contains("Invalid character", errorMsg);
     }
     
 }
