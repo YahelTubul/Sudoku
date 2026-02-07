@@ -8,6 +8,19 @@ public class SolverTests
         parser.Parse(strBoard, out int[][] board, out _);
         return board;
     }
+
+    private bool isSolved(int[][] board)
+    {
+        for (int row = 0; row < 9; row++)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                if (board[row][col] == 0)
+                    return false;
+            }
+        }
+        return true;
+    }
     
 
     [Fact]
@@ -19,8 +32,21 @@ public class SolverTests
         //call to the parse function
         int [][] board = ParseBoard(strBoard);
         bool result = solver.Solve(board, out string errorMsg);
-        
-        
-
+        Assert.True(result);
+        Assert.Empty(errorMsg);
+        Assert.True(isSolved(board));
+    }
+    [Fact]
+    public void Solve_HardSudoku()
+    {
+        //create solver object
+        var solver = new Solver();
+        string strBoard = "000000012980000000000600000100700080402000000000300600070000300050040000000010000";
+        //call to the parse function
+        int [][] board = ParseBoard(strBoard);
+        bool result = solver.Solve(board, out string errorMsg);
+        Assert.True(result);
+        Assert.Empty(errorMsg);
+        Assert.True(isSolved(board));
     }
 }
