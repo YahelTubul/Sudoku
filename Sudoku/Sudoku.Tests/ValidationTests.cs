@@ -70,6 +70,20 @@ public class ValidationTests
     [Fact]
     public void Validate_InvalidValue()
     {
+        //create validation object
+        var validate = new Validation();
+        //create empty board
+        int[][] board = Helper.CreateEmptyBoard();
+        //allocate invalid value in the board 
+        board[0][0] = 10;
+        bool result = validate.Validate(board, out string errorMsg);
+        Assert.False(result);
+        Assert.Contains("must be between", errorMsg.ToLower());
+    }
+
+    [Fact]
+    public void Validate_WrongSizeBoard()
+    {
         
     }
 }
