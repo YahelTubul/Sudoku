@@ -66,15 +66,11 @@ public class SolverTests
     [Fact]
     public void Solve_Unsolvable_Fails()
     {
+        //create solver object
         var solver = new Solver();
-        int[][] board = new int[9][];
-        for (int i = 0; i < 9; i++)
-        {
-            board[i] = new int[9];
-        }
-        //duplicate values cannot be solved
-        board[0][0] = 5;
-        board[0][1] = 5; 
+        string solved = "820000000003600000070090200050007000000045700000100030001000068008500010090000400";
+        //call to the parse function
+        int[][] board = ParseBoard(solved);
         bool result = solver.Solve(board, out string errorMsg);
         Assert.False(result);
         Assert.Contains("no solution", errorMsg.ToLower());
