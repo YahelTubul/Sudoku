@@ -5,11 +5,11 @@ with MRV heuristic and bit manipulation optimization.
 ---
 
 ## Features
-- **Arithmetic operations**: Input parsing from 81-character strings
+- **Arithmetic operations**: Input parsing from 81 character strings
 - **Validation**: Duplicate detection in rows, columns, and 3x3 blocks
-- **Smart solving**: Backtracking with MRV (Minimum Remaining Values) heuristic
+- **Smart solving**: Backtracking with MRV heuristic
 - **Bit optimization**: Constraint tracking using bit masks for fast performance
-- **OOP Design**: Interface-based architecture following SOLID principles
+- **OOP Design**: Interface based architecture following SOLID principles
 
 ---
 
@@ -43,7 +43,7 @@ Solve time: 12 ms
 2 8 7 | 4 1 9 | 6 3 5
 3 4 5 | 2 8 6 | 1 7 9
 
-Solution: 534678912672195348198342567859761423426853791713924856961537284287419635345286179
+Solution string: 534678912672195348198342567859761423426853791713924856961537284287419635345286179
 ```
 
 ---
@@ -63,8 +63,8 @@ Solution: 5346789126721953481983425678597614234268537917139248569615372842874196
 Input → Parser → Validator → Solver → Result
 ```
 
-Three-stage pipeline:
-1. **Parser**: Converts 81-character string into a 9x9 board
+Three stage pipeline:
+1. **Parser**: Converts 81 character string into a 9x9 board
 2. **Validator**: Checks board structure and Sudoku rules
 3. **Solver**: Solves using backtracking with MRV heuristic
 
