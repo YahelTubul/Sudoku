@@ -30,6 +30,7 @@ public class BoardData
         NumOfCells = SizeBlock * SizeBlock;
         CompleteMask = (1 << (SizeBoard + 1)) - 2;
     }
+
     /// <summary>
     /// Constructor function that before the board is built
     /// </summary>
@@ -41,7 +42,4 @@ public class BoardData
         NumOfCells = SizeBlock * SizeBlock;
         CompleteMask = (1 << (SizeBoard + 1)) - 2;
     }
-    
-    
-    
 }

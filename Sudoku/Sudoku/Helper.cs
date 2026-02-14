@@ -4,11 +4,6 @@ namespace Sudoku;
 
 public class Helper
 {
-    public const int SizeBoard = 9;
-    public const int SizeBlock = 3;
-    public const int CompleteMask = 0b1111111110;
-    public const int NumOfCells = 81;
-
     /// <summary>
     /// check if the bit is on using binary operator
     /// </summary>
@@ -26,9 +21,9 @@ public class Helper
     /// <param name="row"></param>
     /// <param name="col"></param>
     /// <returns>index of the present block</returns>
-    public static int GetBlockIndex(int row, int col)
+    public static int GetBlockIndex(int row, int col,int sizeBlock)
     {
-        return (row / SizeBlock) * SizeBlock + (col / SizeBlock);
+        return (row / sizeBlock) * sizeBlock + (col / sizeBlock);
     }
 
     /// <summary>
@@ -89,16 +84,18 @@ public class Helper
     /// <param name="board"></param>
     public static void PrintBoard(int[][] board)
     {
-        for (int row = 0; row < SizeBoard; row++)
+        int sizeBoard = board.Length;
+        int sizeBlock = (int)Math.Sqrt(sizeBoard);
+        for (int row = 0; row < sizeBoard; row++)
         {
-            if (row == SizeBlock || row == 6)
+            if (row == sizeBlock || row == 6)
             {
                 Console.WriteLine("---------------------");
             }
 
-            for (int col = 0; col < SizeBoard; col++)
+            for (int col = 0; col < sizeBoard; col++)
             {
-                if (col == SizeBlock || col == 6)
+                if (col == sizeBlock || col == 6)
                 {
                     Console.Write("| ");
                 }
@@ -117,10 +114,11 @@ public class Helper
     /// <returns></returns>
     public static string PrintBoardString(int[][] board)
     {
+        int sizeBoard = board.Length;
         StringBuilder solvedStr = new StringBuilder(81);
-        for (int row = 0; row < SizeBoard; row++)
+        for (int row = 0; row < sizeBoard; row++)
         {
-            for (int col = 0; col < SizeBoard; col++)
+            for (int col = 0; col < sizeBoard; col++)
             {
                 solvedStr.Append((char)('0' + board[row][col]));
             }
