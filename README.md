@@ -74,9 +74,10 @@ Three stage pipeline:
 ```
 Sudoku/
 ├── Program.cs        # Entry point and user interaction
-├── Parser.cs         # Input parsing and string validation
+├── Parser.cs         # Parses string input, infers board size automatically
 ├── Validation.cs     # Board and rules validation
 ├── Solver.cs         # Backtracking algorithm with MRV
+├── BoardData.cs      # Board properties derived from the board itself (generic)
 ├── Helper.cs         # Bit manipulation utilities
 ├── IParser.cs        # Parser interface
 ├── IValidator.cs     # Validator interface
@@ -86,7 +87,7 @@ Sudoku.Tests/
 ├── ParserTests.cs       # 6 tests
 ├── ValidationTests.cs   # 6 tests
 ├── SolverTests.cs       # 4 tests
-└── IntegrationTests.cs  # 1 tests
+└── ProgramTests.cs      # 1 integration test
 ```
 
 ---
