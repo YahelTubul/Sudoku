@@ -1,5 +1,7 @@
 namespace Sudoku;
-
+/// <summary>
+/// Class for holding all the data of the board
+/// </summary>
 public class BoardData
 {
     /// <summary>

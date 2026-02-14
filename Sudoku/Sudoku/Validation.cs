@@ -86,10 +86,10 @@ public class Validation : IValidation
         bit = 0;
         value = board[row][col];
         
-        //check if the value of digit is between 1 and 9
-        if (value < 0 || value > 9)
+        //check if the value of digit is between 1 and the length of the board
+        if (value < 0 || value > board.Length)
         {
-            errorMsg = "The value must be between 1 to 9!";
+            errorMsg = $"The value must be between 1 to {board.Length}!";
             return false;
         }
 

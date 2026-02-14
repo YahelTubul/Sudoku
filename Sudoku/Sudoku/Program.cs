@@ -18,7 +18,7 @@ public class Program
         this._parser = parser;
         this._solver = solver;
     }
-    //contructor default without parameters
+    //constructor default without parameters
     public Program()
     {
         _validation = new Validation();

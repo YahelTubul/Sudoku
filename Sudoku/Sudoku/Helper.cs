@@ -88,14 +88,14 @@ public class Helper
         int sizeBlock = (int)Math.Sqrt(sizeBoard);
         for (int row = 0; row < sizeBoard; row++)
         {
-            if (row == sizeBlock || row == 6)
+            if (row > 0 && row % sizeBlock == 0)
             {
-                Console.WriteLine("---------------------");
+                Console.WriteLine(new string('-', sizeBoard * 2 + sizeBlock - 1));
             }
 
             for (int col = 0; col < sizeBoard; col++)
             {
-                if (col == sizeBlock || col == 6)
+                if (col > 0 && col % sizeBlock == 0)
                 {
                     Console.Write("| ");
                 }
@@ -139,7 +139,7 @@ public class Helper
     public static int[][] CreateEmptyBoard(int sizeBoard)
     {
         int[][] board = new int[sizeBoard][];
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < sizeBoard; i++)
         {
             board[i] = new int[sizeBoard];
         }
