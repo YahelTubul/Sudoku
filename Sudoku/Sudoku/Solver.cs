@@ -6,6 +6,7 @@ public class Solver : ISolver
     private int[] _maskCol;
     private int[] _maskBlock;
     private BoardData _data;
+    private int[][] _blockIndex;
     
     /// <summary>
     /// This function turn the board to mask for fast scan
@@ -18,6 +19,14 @@ public class Solver : ISolver
         _maskRow   = new int[_data.SizeBoard];
         _maskCol   = new int[_data.SizeBoard];
         _maskBlock = new int[_data.SizeBoard];
+        _blockIndex =  new int[_data.SizeBoard][];
+        //calculate the block index of all the board
+        for (int row = 0; row < _data.SizeBoard; row++)
+        {
+            _blockIndex[row] = new int[_data.SizeBoard];
+            for (int col = 0; col < _data.SizeBoard; col++)
+                _blockIndex[row][col] = Helper.GetBlockIndex(row, col, _data.SizeBlock);
+        }
         
         //these loops pass on each cell
         for (int row = 0; row < _data.SizeBoard; row++)
