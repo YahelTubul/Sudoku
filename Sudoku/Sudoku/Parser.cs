@@ -15,11 +15,11 @@ public class Parser : IParser
         board = null;
         errorMsg = "";
         // check if the string is valid
-        if (!ValidInput(strBoard, out errorMsg))
+        if (!ValidInput(strBoard, out errorMsg,  out int sizeBoard))
         {
             return false;
         }
-        board = BuildBoard(strBoard);
+        board = BuildBoard(strBoard, sizeBoard);
         return true;
     }
     /// <summary>
@@ -28,10 +28,10 @@ public class Parser : IParser
     /// <param name="strBoard"></param>
     /// <param name="errorMsg"></param>
     /// <returns>true/false, error message</returns>
-    private static bool ValidInput(string strBoard, out string errorMsg)
+    private static bool ValidInput(string strBoard, out string errorMsg, out int sizeBoard)
     {
         errorMsg = "";
-        char ch = ' ';
+        sizeBoard = 0;
 
         if (strBoard == null)
         {
@@ -41,20 +41,26 @@ public class Parser : IParser
         //remove whitespaces from the string 
         strBoard = strBoard.Trim();
         
-        // check if the length of the string is equal to the number of cells
-        if (strBoard.Length != Helper.NumOfCells)
+        int NumOfCells = strBoard.Length;
+        //the square from the number of the cells 
+        int infferSize = (int)Math.Sqrt(NumOfCells);
+        
+        // validate that the infer size it is square
+        if (infferSize * infferSize != NumOfCells)
         {
-            errorMsg = $"The string must contain {Helper.NumOfCells} numbers,you need to add {Helper.NumOfCells - strBoard.Length} numbers!";
+            errorMsg = $"String length {infferSize} is not a square";
             return false;
         }
-        
+        sizeBoard = infferSize;
         //pass on each char in the array and check if its digit between '0' to '9'
-        for (int i = 0; i < Helper.NumOfCells; i++)
+        for (int i = 0; i < NumOfCells; i++)
         {
-            ch = strBoard[i];
-            if (ch < '0' || ch > '9')
+            char ch = strBoard[i];
+            int digit = ch - '0';
+            
+            if (digit < 0 || digit > sizeBoard)
             {
-                errorMsg = $"Invalid character in position {i}";
+                errorMsg = $"Invalid character {ch} in position {i}";
                 return false;
             }
         }
@@ -65,20 +71,13 @@ public class Parser : IParser
     /// </summary>
     /// <param name="strBoard"></param>
     /// <returns>board</returns>
-    private static int[][] BuildBoard(string strBoard)
+    private static int[][] BuildBoard(string strBoard, int sizeBoard)
     {
-        int[][] board = new int[Helper.SizeBoard][];
-        
-        // pass on each row, and create new array in this index
-        for (int row = 0; row < Helper.SizeBoard; row++)
+        int[][] board = Helper.CreateEmptyBoard(sizeBoard);
+
+        for (int i = 0; i < strBoard.Length; i++)
         {
-            board[row] = new int[Helper.SizeBoard];
-        }
-        // pass on each cell and sets to it the specific char from the string
-        for (int i = 0; i < Helper.NumOfCells; i++)
-        {
-            int value = strBoard[i] - '0';
-            board[i / Helper.SizeBoard][i % Helper.SizeBoard] = value;
+            board[i / sizeBoard][i % sizeBoard] = strBoard[i] - '0';
         }
         return board;
     }

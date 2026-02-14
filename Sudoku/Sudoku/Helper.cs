@@ -115,7 +115,7 @@ public class Helper
     public static string PrintBoardString(int[][] board)
     {
         int sizeBoard = board.Length;
-        StringBuilder solvedStr = new StringBuilder(81);
+        StringBuilder solvedStr = new StringBuilder(sizeBoard*sizeBoard);
         for (int row = 0; row < sizeBoard; row++)
         {
             for (int col = 0; col < sizeBoard; col++)
@@ -136,12 +136,12 @@ public class Helper
         Console.WriteLine($"{subject} error: {message}\n");
     }
     
-    public static int[][] CreateEmptyBoard()
+    public static int[][] CreateEmptyBoard(int sizeBoard)
     {
-        int[][] board = new int[9][];
+        int[][] board = new int[sizeBoard][];
         for (int i = 0; i < 9; i++)
         {
-            board[i] = new int[9];
+            board[i] = new int[sizeBoard];
         }
         return board;
     }
