@@ -39,11 +39,10 @@ public class Solver : ISolver
                     continue;
                 
                 int bit = Helper.NumberToBit(value);
-                int indexBlock = Helper.GetBlockIndex(row, col,_data.SizeBlock);
                 //sign the number by turn on the bits in the masks
                 _maskRow[row] |= bit;
                 _maskCol[col] |= bit;
-                _maskBlock[indexBlock] |= bit;
+                _maskBlock[_blockIndex[row][col]] |= bit;
             }
         }
     }
@@ -55,9 +54,8 @@ public class Solver : ISolver
     /// <returns></returns>
     private int OptionalMask(int row, int col)
     {
-        int indexBlock = Helper.GetBlockIndex(row, col, _data.SizeBlock);
         // create mask of numbers that you cant to place in the specific cell
-        int useMask = _maskRow[row] | _maskCol[col] | _maskBlock[indexBlock];
+        int useMask = _maskRow[row] | _maskCol[col] | _maskBlock[_blockIndex[row][col]];
         return _data.CompleteMask & ~useMask;
     }
     /// <summary>
@@ -85,6 +83,13 @@ public class Solver : ISolver
                     continue; 
                 }
                 int optionalMask = OptionalMask(row, col);
+                if (optionalMask == 0)
+                {
+                    FindRow = row;
+                    FindCol = col;
+                    mask = 0;
+                    return true;
+                }
                 int countOnBits = Helper.CountOnBits(optionalMask);
                 //check if the amount of the on bits is smaller than the max on bits
                 if (countOnBits < count)
@@ -114,9 +119,8 @@ public class Solver : ISolver
     {
         //allocate the new number in cell
         board[row][col] = number;
-        int index = Helper.GetBlockIndex(row, col,_data.SizeBlock);
         //turn on the bits in each mask 
-        _maskBlock[index] |= bit;
+        _maskBlock[_blockIndex[row][col]] |= bit;
         _maskRow[row] |= bit;
         _maskCol[col] |= bit;
     }
@@ -131,9 +135,8 @@ public class Solver : ISolver
     {
         //change the value in the cell to 0
         board[row][col] = 0;
-        int index = Helper.GetBlockIndex(row, col, _data.SizeBlock);
         //turn off the bits in each mask 
-        _maskBlock[index] &= ~bit;
+        _maskBlock[_blockIndex[row][col]] &= ~bit;
         _maskRow[row] &= ~bit;
         _maskCol[col] &= ~bit;
     }
