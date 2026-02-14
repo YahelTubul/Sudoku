@@ -17,14 +17,15 @@ public class Validation : IValidation
         {
             return false;
         }
+        var boardData = new BoardData(board);
         
-        int[] rowMask = new int[Helper.SizeBoard];
-        int[] colMask = new int[Helper.SizeBoard];
-        int[] blockMask = new int[Helper.SizeBoard];
+        int[] rowMask = new int[boardData.SizeBoard];
+        int[] colMask = new int[boardData.SizeBoard];
+        int[] blockMask = new int[boardData.SizeBoard];
 
-        for (int row = 0; row < Helper.SizeBoard; row++)
+        for (int row = 0; row < boardData.SizeBoard; row++)
         {
-            for (int col = 0; col < Helper.SizeBoard; col++)
+            for (int col = 0; col < boardData.SizeBoard; col++)
             {
                 // call to function valueValid to check each cell value in the board
                 if (!ValueValid(board, row, col, out int value, out int bit, out errorMsg))
@@ -33,7 +34,7 @@ public class Validation : IValidation
                 if (value == 0)
                     continue;
                 
-                int block = Helper.GetBlockIndex(row, col);
+                int block = Helper.GetBlockIndex(row, col,boardData.SizeBlock);
                 
                 // call to addValid function to check if there is not duplicate in the board
                 if (!AddValid(rowMask, colMask, blockMask, row, col, block, value, bit, out errorMsg))
@@ -52,17 +53,18 @@ public class Validation : IValidation
     {
         errorMsg = "";
         // loop on each col in the board to validate that there is 9 cols
-        if (board == null || board.Length != Helper.SizeBoard)
+        if (board == null || board.Length == 0)
         {
-            errorMsg = "Board size need to include 9 rows!";
+            errorMsg = "Board is empty!";
             return false;
         }
+        int sizeBoard = board.Length;
         // loop on each row in the board to validate that there is 9 rows
-        for (int row = 0; row < Helper.SizeBoard; row++ )
+        for (int row = 0; row < sizeBoard; row++ )
         {
-            if (board[row] == null || board[row].Length != Helper.SizeBoard)
+            if (board[row] == null || board[row].Length != sizeBoard)
             {
-                errorMsg = "Board size need to include 9 columns!";
+                errorMsg = $"Board must be {sizeBoard} rows and {sizeBoard} columns!";
                 return false;
             }
         }
