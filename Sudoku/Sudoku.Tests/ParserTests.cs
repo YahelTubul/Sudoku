@@ -58,7 +58,7 @@ public class ParserTests
         bool result = parser.Parse(strBoard, out int[][] board, out string errorMsg);
         Assert.False(result);
         Assert.Null(board);
-        Assert.Contains("must contain 81 numbers", errorMsg);
+        Assert.Contains("not a square", errorMsg);
     }
 
     [Fact]

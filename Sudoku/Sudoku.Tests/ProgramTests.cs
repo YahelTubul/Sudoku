@@ -19,9 +19,9 @@ public class ProgramTests
         Assert.True(solveRes, $"solve failed: {solveError}");
         
         //valid the board is complete and solved
-        for (int row = 0; row < 9; row++)
+        for (int row = 0; row < board.Length; row++)
         {
-            for (int col = 0; col < 9; col++)
+            for (int col = 0; col < board.Length; col++)
             {
                 Assert.InRange(board[row][col], 1, 9);
             }

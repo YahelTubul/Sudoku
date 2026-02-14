@@ -9,7 +9,7 @@ public class ValidationTests
         //create validation object
         var validate = new Validation();
         //create empty board
-        int[][] board = Helper.CreateEmptyBoard();
+        int[][] board = Helper.CreateEmptyBoard(9);
         //call to the validate function from the class
         bool result = validate.Validate(board, out string errorMsg);
         Assert.True(result);
@@ -23,7 +23,7 @@ public class ValidationTests
         //create validation object
         var validate = new Validation();
         //create empty board
-        int[][] board = Helper.CreateEmptyBoard();
+        int[][] board = Helper.CreateEmptyBoard(9);
         //allocate duplicate values in same rows
         board[0][0] = 5;
         board[0][1] = 5;
@@ -40,7 +40,7 @@ public class ValidationTests
         //create validation object
         var validate = new Validation();
         //create empty board
-        int[][] board = Helper.CreateEmptyBoard();
+        int[][] board = Helper.CreateEmptyBoard(9);
         //allocate duplicate values in same cols
         board[0][0] = 5;
         board[1][0] = 5;
@@ -57,7 +57,7 @@ public class ValidationTests
         //create validation object
         var validate = new Validation();
         //create empty board
-        int[][] board = Helper.CreateEmptyBoard();
+        int[][] board = Helper.CreateEmptyBoard(9);
         //allocate duplicate values in block
         board[0][0] = 5;
         board[2][2] = 5;
@@ -73,7 +73,7 @@ public class ValidationTests
         //create validation object
         var validate = new Validation();
         //create empty board
-        int[][] board = Helper.CreateEmptyBoard();
+        int[][] board = Helper.CreateEmptyBoard(9);
         //allocate invalid value in the board 
         board[0][0] = 10;
         bool result = validate.Validate(board, out string errorMsg);

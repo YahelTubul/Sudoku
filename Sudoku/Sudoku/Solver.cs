@@ -2,9 +2,10 @@ namespace Sudoku;
 
 public class Solver : ISolver
 {
-    private int[] maskRow = new int[Helper.SizeBoard];
-    private int[] maskCol = new int[Helper.SizeBoard];
-    private int[] maskBlock =  new int[Helper.SizeBoard];
+    private int[] _maskRow;
+    private int[] _maskCol;
+    private int[] _maskBlock;
+    private BoardData _data;
     
     /// <summary>
     /// This function turn the board to mask for fast scan
@@ -12,15 +13,16 @@ public class Solver : ISolver
     /// <param name="board"></param>
     private void CreateMask(int[][] board)
     {
-        //reset each mask before start new board 
-        Array.Clear(maskRow, 0, maskRow.Length);
-        Array.Clear(maskCol, 0, maskCol.Length);
-        Array.Clear(maskBlock, 0, maskBlock.Length);
+        //create an objects for the attributes
+        _data = new BoardData(board);
+        _maskRow   = new int[_data.SizeBoard];
+        _maskCol   = new int[_data.SizeBoard];
+        _maskBlock = new int[_data.SizeBoard];
         
         //these loops pass on each cell
-        for (int row = 0; row < maskRow.Length; row++)
+        for (int row = 0; row < _data.SizeBoard; row++)
         {
-            for (int col = 0; col < maskCol.Length; col++)
+            for (int col = 0; col < _data.SizeBoard; col++)
             {
                 //save the value in the present cell
                 int value = board[row][col];
@@ -28,11 +30,11 @@ public class Solver : ISolver
                     continue;
                 
                 int bit = Helper.NumberToBit(value);
-                int indexBlock = Helper.GetBlockIndex(row, col);
+                int indexBlock = Helper.GetBlockIndex(row, col,_data.SizeBlock);
                 //sign the number by turn on the bits in the masks
-                maskRow[row] |= bit;
-                maskCol[col] |= bit;
-                maskBlock[indexBlock] |= bit;
+                _maskRow[row] |= bit;
+                _maskCol[col] |= bit;
+                _maskBlock[indexBlock] |= bit;
             }
         }
     }
@@ -44,10 +46,10 @@ public class Solver : ISolver
     /// <returns></returns>
     private int OptionalMask(int row, int col)
     {
-        int indexBlock = Helper.GetBlockIndex(row, col);
+        int indexBlock = Helper.GetBlockIndex(row, col, _data.SizeBlock);
         // create mask of numbers that you cant to place in the specific cell
-        int useMask = maskRow[row] | maskCol[col] | maskBlock[indexBlock];
-        return Helper.CompleteMask & ~useMask;
+        int useMask = _maskRow[row] | _maskCol[col] | _maskBlock[indexBlock];
+        return _data.CompleteMask & ~useMask;
     }
     /// <summary>
     /// find the empty cell with the minimal options to place 
@@ -64,9 +66,9 @@ public class Solver : ISolver
         mask = 0;
         int count = 10;
         //these loops pass on each cell in the board
-        for (int row = 0; row < Helper.SizeBoard; row++)
+        for (int row = 0; row < _data.SizeBoard; row++)
         {
-            for (int col = 0; col < Helper.SizeBoard; col++)
+            for (int col = 0; col < _data.SizeBoard; col++)
             {
                 //if there is a value in cell continue to the next iteration
                 if (board[row][col] != 0)
@@ -103,11 +105,11 @@ public class Solver : ISolver
     {
         //allocate the new number in cell
         board[row][col] = number;
-        int index = Helper.GetBlockIndex(row, col);
+        int index = Helper.GetBlockIndex(row, col,_data.SizeBlock);
         //turn on the bits in each mask 
-        maskBlock[index] |= bit;
-        maskRow[row] |= bit;
-        maskCol[col] |= bit;
+        _maskBlock[index] |= bit;
+        _maskRow[row] |= bit;
+        _maskCol[col] |= bit;
     }
     /// <summary>
     /// remove the value from cell
@@ -120,11 +122,11 @@ public class Solver : ISolver
     {
         //change the value in the cell to 0
         board[row][col] = 0;
-        int index = Helper.GetBlockIndex(row, col);
+        int index = Helper.GetBlockIndex(row, col, _data.SizeBlock);
         //turn off the bits in each mask 
-        maskBlock[index] &= ~bit;
-        maskRow[row] &= ~bit;
-        maskCol[col] &= ~bit;
+        _maskBlock[index] &= ~bit;
+        _maskRow[row] &= ~bit;
+        _maskCol[col] &= ~bit;
     }
     /// <summary>
     /// solves the board using recursive backtracking algorithm

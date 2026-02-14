@@ -11,9 +11,9 @@ public class SolverTests
 
     private bool IsSolved(int[][] board)
     {
-        for (int row = 0; row < 9; row++)
+        for (int row = 0; row < board.Length; row++)
         {
-            for (int col = 0; col < 9; col++)
+            for (int col = 0; col < board.Length; col++)
             {
                 if (board[row][col] == 0)
                     return false;
